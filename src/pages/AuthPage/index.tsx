@@ -21,6 +21,7 @@ const AuthPage = () => {
   const handleAuthSubmit = (event: FormEvent) => {
     event.preventDefault();
     const mockEmail = codeEmail(email);
+    console.log({ mockEmail });
     signInWithEmailAndPassword(auth, mockEmail, password)
       .then((userCredential) => {
         // Signed in
@@ -29,6 +30,7 @@ const AuthPage = () => {
       })
       .catch((error = {}) => {
         const { code, message } = error;
+        console.log({ error });
         if (message === FIREBASE_INVALID_LOGIN_CREDENTIALS) {
           regiesterNewUser();
         } else {
